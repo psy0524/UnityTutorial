@@ -3,14 +3,29 @@ using UnityEngine;
 
 public class StudyComponent : MonoBehaviour
 {
-    GameObject obj; // 큐브 게임오브젝트를 가져오고 싶다.
+    public GameObject obj;
 
-    public string changeName;
+    public Mesh msh;
+    public Material mat;
 
     void Start()
     {
-        obj = GameObject.Find("Main Camera"); // Main Camera 오브젝트를 찾아서 할당하는 기능
+        //obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        
+        CreateCube("Hello World");
+        CreateCube();
+    }
 
-        obj.name = changeName;
+    public void CreateCube(string name = "Cube")
+    {
+        obj = new GameObject(name);
+
+        obj.AddComponent<MeshFilter>();
+        obj.GetComponent<MeshFilter>().mesh = msh;
+
+        obj.AddComponent<MeshRenderer>();
+        obj.GetComponent<MeshRenderer>().material = mat;
+
+        obj.AddComponent<BoxCollider>();
     }
 }
