@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Character
   - Ground
+  - Score10
+  - Score20
+  - GameOver
   layers:
   - Default
   - TransparentFX
