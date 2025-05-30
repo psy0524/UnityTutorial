@@ -3,6 +3,8 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public float moveSpeed;
+
+    public static int coinCount = 0;
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -56,7 +58,7 @@ public class Movement : MonoBehaviour
 
         Vector3 normalDir = dir.normalized; // 정규화 과정 (0 ~ 1로 만들어줌)
 
-        Debug.Log($"현재 입력 : {normalDir}");
+        //Debug.Log($"현재 입력 : {normalDir}");
 
         transform.position += normalDir * moveSpeed * Time.deltaTime;
 

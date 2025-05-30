@@ -1,20 +1,21 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class DoorEvent : MonoBehaviour
+public class DoorEvent2 : MonoBehaviour
 {
-    private Animator animator;
+    private Animator door2Animator;
+
+    public string openKey;
+    public string closeKey;
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        door2Animator = GetComponent<Animator>();
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            animator.SetTrigger("Open");
+            door2Animator.SetTrigger(openKey);
         }
     }
 
@@ -22,8 +23,7 @@ public class DoorEvent : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            animator.SetTrigger("Close");
+            door2Animator.SetTrigger(closeKey);
         }
     }
-
 }
