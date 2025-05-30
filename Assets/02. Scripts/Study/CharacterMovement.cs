@@ -3,16 +3,14 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
     private Rigidbody2D characterRb;
-
-    public float moveSpeed;
-
-    public float jumpPower = 10f;
-
-    private float h;
-
     public SpriteRenderer[] renderers;
-
-    private bool isGround;
+    
+    public float moveSpeed;
+    public float jumpPower = 10f;
+   
+    private float h;
+    public bool isGround;
+    public bool isJumping;
     
     private void Start()
     {
@@ -22,12 +20,12 @@ public class CharacterMovement : MonoBehaviour
     private void Update()
     {
         h = Input.GetAxis("Horizontal");
+
         Jump();
     }
 
     private void FixedUpdate()
-    {
-                                  
+    {                             
         Move();
     }
 
@@ -41,7 +39,7 @@ public class CharacterMovement : MonoBehaviour
     {
         isGround= false;
         renderers[0].gameObject.SetActive(false); // Idle
-        renderers[1].gameObject.SetActive(false); // Idle
+        renderers[1].gameObject.SetActive(false); // run
         renderers[2].gameObject.SetActive(true);
     }
 
@@ -51,15 +49,20 @@ public class CharacterMovement : MonoBehaviour
     /// </summary>
     private void Move()
     {
-        if(!isGround)
-        {
-            return;
-        }
+        
         if (h != 0) // 움직일 때
         {
-            renderers[0].gameObject.SetActive(false); // Idle
-            renderers[1].gameObject.SetActive(true); // Run
-            characterRb.linearVelocityX = h * moveSpeed; // 물리적인 이동
+            if (isGround)
+            {
+                renderers[0].gameObject.SetActive(false); // Idle
+                renderers[1].gameObject.SetActive(true); // Run
+            }
+            else
+            {
+                renderers[0].gameObject.SetActive(false); // Idle
+                renderers[1].gameObject.SetActive(false); // Run
+            }
+                characterRb.linearVelocityX = h * moveSpeed; // 물리적인 이동
 
             if (h > 0)
             {
@@ -76,10 +79,13 @@ public class CharacterMovement : MonoBehaviour
                 
             }
         }
-        else // 움직이지 않을 때
+        else if(h == 0) // 움직이지 않을 때
         {
-            renderers[0].gameObject.SetActive(true); // Idle
-            renderers[1].gameObject.SetActive(false); // Run
+            if (isGround)
+            {
+                renderers[0].gameObject.SetActive(true); // Idle
+                renderers[1].gameObject.SetActive(false); // Run
+            }
         }
     }
 
@@ -91,10 +97,6 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump")) // Input.GetKeyDown(KeyCode.Space)
         {
             characterRb.AddForceY(jumpPower, ForceMode2D.Impulse);
-
-            renderers[0].gameObject.SetActive(false); // Idle
-            renderers[1].gameObject.SetActive(false); // Run
-            renderers[2].gameObject.SetActive(true); // Jump
         }
     }
 
