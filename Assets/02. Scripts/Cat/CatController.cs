@@ -1,4 +1,5 @@
 using UnityEngine;
+using Cat;
 
 public class CatController : MonoBehaviour
 {
@@ -12,10 +13,12 @@ public class CatController : MonoBehaviour
 
     public int jumpCount;
 
+    public SoundManager soundManager;
     void Start()
     {
         catRb = GetComponent<Rigidbody2D>();
         catAnim = GetComponent<Animator>();
+
     }
 
 
@@ -28,7 +31,7 @@ public class CatController : MonoBehaviour
             catAnim.SetBool("isGround", false);
             catRb.AddForceY(jumpPower, ForceMode2D.Impulse);
             jumpCount++;
-
+            soundManager.OnJumpSound();
 
         }
     }
