@@ -3,6 +3,9 @@ using UnityEngine;
 public class CatController : MonoBehaviour
 {
     private Rigidbody2D catRb;
+
+    private Animator catAnim;
+
     public float jumpPower = 10f;
 
     public bool isGround = false;
@@ -12,6 +15,7 @@ public class CatController : MonoBehaviour
     void Start()
     {
         catRb = GetComponent<Rigidbody2D>();
+        catAnim = GetComponent<Animator>();
     }
 
 
@@ -20,7 +24,8 @@ public class CatController : MonoBehaviour
         // 스페이스 바 입력
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < 2)
         {
-
+            catAnim.SetTrigger("Jump");
+            catAnim.SetBool("isGround", false);
             catRb.AddForceY(jumpPower, ForceMode2D.Impulse);
             jumpCount++;
 
@@ -32,6 +37,7 @@ public class CatController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            catAnim.SetBool("isGround", true);
             isGround = true;
             jumpCount = 0;
         }
