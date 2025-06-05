@@ -32,8 +32,8 @@ namespace Cat
                 playObj.SetActive(true);
                 introUI.SetActive(false);
                 
-                Debug.Log($"{nameTextUI.text} 입력");
                 nameTextUI.text = inputField.text;
+                Debug.Log($"{nameTextUI.text} 입력");
             }
         }
     }
