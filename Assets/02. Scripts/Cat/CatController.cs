@@ -29,6 +29,7 @@ public class CatController : MonoBehaviour
         {
             catAnim.SetTrigger("Jump");
             catAnim.SetBool("isGround", false);
+            catRb.linearVelocity = Vector2.zero;
             catRb.AddForceY(jumpPower, ForceMode2D.Impulse);
             jumpCount++;
             soundManager.OnJumpSound();
