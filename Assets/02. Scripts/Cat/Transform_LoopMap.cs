@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Transform_LoopMap : MonoBehaviour
 {
-    public float moveSpeed = 3f;
+    public float moveSpeed = 2.5f;
 
     public float returnPosX = 15f;
 
