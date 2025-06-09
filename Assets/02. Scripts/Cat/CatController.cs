@@ -35,6 +35,10 @@ public class CatController : MonoBehaviour
             soundManager.OnJumpSound();
 
         }
+
+        var catRotation = transform.eulerAngles;
+        catRotation.z = catRb.linearVelocity.y * 2.5f;
+        transform.eulerAngles = catRotation;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

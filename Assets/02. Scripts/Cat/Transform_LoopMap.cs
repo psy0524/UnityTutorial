@@ -15,7 +15,7 @@ public class Transform_LoopMap : MonoBehaviour
 
         if(transform.position.x <= -returnPosX) // 이미지의 x축 값이 returnPos을 넘는 순간
         {
-            randomPosY = Random.Range(-8f, -2.5f);
+            randomPosY = Random.Range(-8, -3);
             transform.position = new Vector3(returnPosX, randomPosY, 0);
         }
     }
