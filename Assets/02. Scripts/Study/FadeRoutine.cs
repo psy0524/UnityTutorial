@@ -13,16 +13,22 @@ public class FadeRoutine : MonoBehaviour
     private float timer = 0f; // 사용될 타이머
 
     public bool isFadeIn = false;
+
+    public void OnFade(float fadeTime, Color color)
+    {
+        StartCoroutine(Fade(fadeTime, color));
+    }
     
-    IEnumerator Start()
+    IEnumerator Fade(float fadeTime, Color color)
     {
         
         while (percent < 1f)
         {
             timer += Time.deltaTime;
             percent = timer / fadeTime; // 페이드 퍼센트
-            float value = isFadeIn ? percent : 1 - percent;
-            fadePanel.color = new Color(fadePanel.color.r, fadePanel.color.g, fadePanel.color.b, value);
+            //float value = isFadeIn ? percent : 1 - percent;
+
+            fadePanel.color = new Color(color.r, color.g, color.b, percent);
             yield return null;
         }
         

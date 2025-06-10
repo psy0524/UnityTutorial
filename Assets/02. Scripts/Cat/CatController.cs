@@ -13,7 +13,14 @@ public class CatController : MonoBehaviour
 
     public int jumpCount;
 
+    public GameObject fadeUI;
+
     public SoundManager soundManager;
+
+    public GameObject gameOverUI;
+
+    public GameObject happyVideo;
+    public GameObject sadVideo;
     void Start()
     {
         catRb = GetComponent<Rigidbody2D>();
@@ -40,7 +47,24 @@ public class CatController : MonoBehaviour
         catRotation.z = catRb.linearVelocity.y * 2.5f;
         transform.eulerAngles = catRotation;
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Apple"))
+        {
+            other.gameObject.SetActive(false);
+            other.transform.parent.GetComponent<ItemEvent>().particle.SetActive(true);
+            GameManager.score++;
 
+            if(GameManager.score == 10)
+            {
+                fadeUI.SetActive(true);
+                fadeUI.GetComponent<FadeRoutine>().OnFade(3f, Color.white);
+                this.GetComponent<CircleCollider2D>().enabled = false;
+
+                Invoke("HappyVideo", 5f);
+            }
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -48,6 +72,16 @@ public class CatController : MonoBehaviour
             catAnim.SetBool("isGround", true);
             isGround = true;
             jumpCount = 0;
+        }
+        else if (collision.gameObject.CompareTag("Pipe"))
+        {
+            soundManager.OnColliderSound();
+            gameOverUI.SetActive(true);
+            fadeUI.SetActive(true);
+            fadeUI.GetComponent<FadeRoutine>().OnFade(3f, Color.black);
+            this.GetComponent<CircleCollider2D>().enabled = false;
+
+            Invoke("SadVideo", 5f);
         }
     }
 
@@ -57,5 +91,23 @@ public class CatController : MonoBehaviour
         {
             isGround = false;
         }
+    }
+
+    public void HappyVideo()
+    {
+        happyVideo.SetActive(true);
+        fadeUI.SetActive(false);
+        gameOverUI.SetActive(false);
+
+        soundManager.audioSource.mute = true;
+    }
+
+    public void SadVideo()
+    {
+        sadVideo.SetActive(true);
+        fadeUI.SetActive(false);
+        gameOverUI.SetActive(false);
+
+        soundManager.audioSource.mute = true;
     }
 }
