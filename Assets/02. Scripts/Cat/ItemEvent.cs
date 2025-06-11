@@ -9,7 +9,7 @@ public class ItemEvent : MonoBehaviour
     public GameObject apple;
     public GameObject particle;
     
-    public float moveSpeed = 2.5f;
+    public float moveSpeed = 1f;
 
     public float returnPosX = 15f;
 
@@ -17,13 +17,14 @@ public class ItemEvent : MonoBehaviour
 
     private void Start()
     {
+        //Application.targetFrameRate = 240;
         SetRandomSetting(transform.position.x);
     }
 
     void Update()
     {
         // 배경 왼쪽으로 이동하는 기능
-        transform.position += Vector3.left * moveSpeed * Time.fixedDeltaTime;
+        transform.position += Vector3.left * moveSpeed * Time.deltaTime;
 
         if (transform.position.x <= -returnPosX) // 이미지의 x축 값이 returnPos을 넘는 순간
         {

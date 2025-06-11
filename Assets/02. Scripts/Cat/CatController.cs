@@ -1,5 +1,6 @@
 using UnityEngine;
 using Cat;
+using System.Collections;
 
 public class CatController : MonoBehaviour
 {
@@ -16,11 +17,11 @@ public class CatController : MonoBehaviour
     public GameObject fadeUI;
 
     public SoundManager soundManager;
+    public VideoManager videoManager;
 
     public GameObject gameOverUI;
+    public GameObject playUI;
 
-    public GameObject happyVideo;
-    public GameObject sadVideo;
     void Start()
     {
         catRb = GetComponent<Rigidbody2D>();
@@ -52,16 +53,17 @@ public class CatController : MonoBehaviour
         if (other.gameObject.CompareTag("Apple"))
         {
             other.gameObject.SetActive(false);
-            other.transform.parent.GetComponent<ItemEvent>().particle.SetActive(true);
+            other.transform.GetComponentInParent<ItemEvent>().particle.SetActive(true);
             GameManager.score++;
 
-            if(GameManager.score == 10)
+            if(GameManager.score == 5)
             {
                 fadeUI.SetActive(true);
                 fadeUI.GetComponent<FadeRoutine>().OnFade(3f, Color.white);
                 this.GetComponent<CircleCollider2D>().enabled = false;
 
-                Invoke("HappyVideo", 5f);
+                //Invoke("HappyVideo", 5f);
+                StartCoroutine(EndingRoutine(true));
             }
         }
     }
@@ -81,7 +83,8 @@ public class CatController : MonoBehaviour
             fadeUI.GetComponent<FadeRoutine>().OnFade(3f, Color.black);
             this.GetComponent<CircleCollider2D>().enabled = false;
 
-            Invoke("SadVideo", 5f);
+            StartCoroutine(EndingRoutine(false));
+            //Invoke("SadVideo", 5f);
         }
     }
 
@@ -93,21 +96,36 @@ public class CatController : MonoBehaviour
         }
     }
 
-    public void HappyVideo()
+    //public void HappyVideo()
+    //{
+    //    videoManager.VideoPlay(true);
+    //    fadeUI.SetActive(false);
+    //    gameOverUI.SetActive(false);
+
+    //    soundManager.audioSource.mute = true;
+    //}
+
+    //public void SadVideo()
+    //{
+    //    videoManager.VideoPlay(false);
+
+    //    fadeUI.SetActive(false);
+    //    gameOverUI.SetActive(false);
+    //    playUI.SetActive(false);
+
+    //    soundManager.audioSource.mute = true;
+    //}
+
+    IEnumerator EndingRoutine(bool isHappy)
     {
-        happyVideo.SetActive(true);
+        yield return new WaitForSeconds(3.5f);
+
+        videoManager.VideoPlay(isHappy);
+        
+
         fadeUI.SetActive(false);
         gameOverUI.SetActive(false);
-
-        soundManager.audioSource.mute = true;
-    }
-
-    public void SadVideo()
-    {
-        sadVideo.SetActive(true);
-        fadeUI.SetActive(false);
-        gameOverUI.SetActive(false);
-
+        playUI.SetActive(false);
         soundManager.audioSource.mute = true;
     }
 }
