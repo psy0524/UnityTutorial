@@ -9,7 +9,7 @@ namespace Cat
         public SoundManager soundManager;
         public TextMeshProUGUI playTimeUI;
         public TextMeshProUGUI scoreUI;
-        private float timer;
+        private static float timer;
         public static int score; // 사과를 먹은 갯수
         public static bool isPlay;
 
@@ -24,6 +24,12 @@ namespace Cat
             //playTimeUI.text = string.Format("플레이 시간 : {0:F0}초", timer);
             playTimeUI.text = $"플레이 시간 : {timer:F0}초";
             scoreUI.text = $"<color=red>X</color> {score}개";
+        }
+
+        public static void ResetPlayUI()
+        {
+            timer = 0f;
+            score = 0;
         }
     }
 }

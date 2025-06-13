@@ -1,6 +1,7 @@
 using UnityEngine;
 using Cat;
 using System.Collections;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class CatController : MonoBehaviour
 {
@@ -22,17 +23,27 @@ public class CatController : MonoBehaviour
     public GameObject gameOverUI;
     public GameObject playUI;
 
-    void Start()
+    void Awake()
     {
         catRb = GetComponent<Rigidbody2D>();
         catAnim = GetComponent<Animator>();
 
     }
 
+    private void OnEnable()
+    {
+        transform.localPosition = new Vector3(-8.21f, -2.05f, 0);
+        GetComponent<CircleCollider2D>().enabled = true;
+        soundManager.audioSource.mute = false;
+    }
 
     void Update()
     {
-        // 스페이스 바 입력
+        Jump();
+    }
+
+    private void Jump()
+    {
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < 2)
         {
             catAnim.SetTrigger("Jump");
@@ -48,6 +59,7 @@ public class CatController : MonoBehaviour
         catRotation.z = catRb.linearVelocity.y * 2.5f;
         transform.eulerAngles = catRotation;
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Apple"))
@@ -56,10 +68,10 @@ public class CatController : MonoBehaviour
             other.transform.GetComponentInParent<ItemEvent>().particle.SetActive(true);
             GameManager.score++;
 
-            if(GameManager.score == 5)
+            if (GameManager.score == 15)
             {
                 fadeUI.SetActive(true);
-                fadeUI.GetComponent<FadeRoutine>().OnFade(3f, Color.white);
+                fadeUI.GetComponent<FadeRoutine>().OnFade(3f, Color.white, true); // 페이드 실행
                 this.GetComponent<CircleCollider2D>().enabled = false;
 
                 //Invoke("HappyVideo", 5f);
@@ -80,7 +92,7 @@ public class CatController : MonoBehaviour
             soundManager.OnColliderSound();
             gameOverUI.SetActive(true);
             fadeUI.SetActive(true);
-            fadeUI.GetComponent<FadeRoutine>().OnFade(3f, Color.black);
+            fadeUI.GetComponent<FadeRoutine>().OnFade(3f, Color.black, true); // 페이드 실행
             this.GetComponent<CircleCollider2D>().enabled = false;
 
             StartCoroutine(EndingRoutine(false));
@@ -119,13 +131,21 @@ public class CatController : MonoBehaviour
     IEnumerator EndingRoutine(bool isHappy)
     {
         yield return new WaitForSeconds(3.5f);
+        // PLAY 그룹 오브젝트를 off
 
         videoManager.VideoPlay(isHappy);
-        
+        yield return new WaitForSeconds(1f);
 
+        var newColor = isHappy ? Color.white : Color.black;
+        fadeUI.GetComponent<FadeRoutine>().OnFade(3f, newColor, false);
+        
+        yield return new WaitForSeconds(3f);
         fadeUI.SetActive(false);
         gameOverUI.SetActive(false);
         playUI.SetActive(false);
-        soundManager.audioSource.mute = true;
+        soundManager.audioSource.Stop();
+        transform.parent.gameObject.SetActive(false); // PLAY 오브젝트 off
+
+        Debug.Log("음소거");
     }
 }

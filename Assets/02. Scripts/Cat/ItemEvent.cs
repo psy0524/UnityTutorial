@@ -15,10 +15,16 @@ public class ItemEvent : MonoBehaviour
 
     public float randomPosY;
 
-    private void Start()
+    private Vector3 initPos;
+
+    private void Awake()
     {
-        //Application.targetFrameRate = 240;
-        SetRandomSetting(transform.position.x);
+        initPos = transform.localPosition;
+    }
+
+    private void OnEnable()
+    {
+        SetRandomSetting(initPos.x);
     }
 
     void Update()
