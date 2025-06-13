@@ -1,13 +1,33 @@
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Study_Casting : MonoBehaviour
 {
-    int number1 = 1;
-    float number2 = 10f;
+    public List<int> intList = new List<int>();
+    public List<GameObject> GameObjectList = new List<GameObject>();
+    public List<Vector3> vector3s = new List<Vector3>();
+    public List<bool> boolList = new List<bool>();
+    public List<string> stringList = new List<string>();
 
     private void Start()
     {
-        number1 = (int)number2;
-        Debug.Log(number1);
+        Monster m = new Orc();
+        //Orc o1 = m;
+        //Orc o = (Orc)m;
+
+        Orc o = m as Orc; // 성공시 형변환 // 실패시 null 반환
+
+        Debug.Log(o);
+
+        if (o != null)
+        {
+            Debug.Log (o);
+        }
+        else
+        {
+            Debug.Log("형변환 되지 않음");
+        }
     }
 }
