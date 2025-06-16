@@ -1,18 +1,16 @@
 using UnityEngine;
 
-public abstract class Monster : MonoBehaviour, IDamageable
+public class Door : MonoBehaviour, IDamageable
 {
-    public float hp;
-
-    public abstract void SetHealth();
-
+    public float hp =100f;
+    
     public void TakeDamage(float damage)
     {
         Debug.Log($"{damage}만큼의 피해를 입었습니다.");
 
         hp -= damage;
 
-        if (hp <= 0f)
+        if(hp <= 0f)
         {
             Death();
         }
@@ -20,6 +18,6 @@ public abstract class Monster : MonoBehaviour, IDamageable
 
     public void Death()
     {
-        Debug.Log("몬스터 사망.");
+        Debug.Log("문이 파괴되었습니다.");
     }
 }
