@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IDropItem 
 {
-    void Grab();
+    void Grab(Transform transform);
     void Use();
     void Drop();
 }
