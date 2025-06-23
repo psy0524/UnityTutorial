@@ -51,7 +51,7 @@ public abstract class Monster : MonoBehaviour
     {
         StartCoroutine(Hit(1));
     }
-    IEnumerator Hit(float damage)
+    public IEnumerator Hit(float damage)
     {
         if (isHit)
         {
