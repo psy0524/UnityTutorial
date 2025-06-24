@@ -103,6 +103,13 @@ public class KnightController_Joystick : MonoBehaviour
             isAttack = false;
         }
     }
+    
+    public void EndCombo()
+    {
+        isAttack = false;
+        isCombo = false;
+        animator.SetBool("isCombo", false);
+    }
 
     //void SetAnimation()
     //{

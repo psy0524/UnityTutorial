@@ -12,6 +12,8 @@ public class KnightController_Keyboard : MonoBehaviour
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float jumpPower = 13f;
     private bool isGround;
+    private bool isAttack;
+    private bool isCombo;
 
     private void Start()
     {
@@ -38,13 +40,18 @@ public class KnightController_Keyboard : MonoBehaviour
 
         Jump();
         SetAnimation();
+        SwordAttack();
     }
 
     private void Move()
     {
         if (inputDir.x != 0)
         {
-            knightRb.linearVelocityX = inputDir.x * moveSpeed;
+            if (!isAttack)
+            {
+                knightRb.linearVelocityX = inputDir.x * moveSpeed;
+            }
+            else { return; }
         }
     }
 
@@ -70,6 +77,46 @@ public class KnightController_Keyboard : MonoBehaviour
             animator.SetBool("isRun", false);
 
         }
+    }
+
+    void SwordAttack()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            if (!isAttack)
+            {
+                isAttack = true;
+                animator.SetTrigger("Attack");
+            }
+            else
+            {
+                isCombo = true;
+                Debug.Log("ÄÞº¸ È®ÀÎ");
+            }
+        }
+        
+    }
+
+    public void CheckCombo()
+    {
+        Debug.Log("ÄÞº¸");
+        if (isCombo)
+        {
+            animator.SetBool("isCombo", true);
+        }
+        else
+        {
+            animator.SetBool("isCombo", false);
+            isAttack = false;
+        }
+        isCombo = false;
+    }
+
+    public void EndCombo()
+    {
+        isAttack = false;
+        isCombo = false;
+        animator.SetBool("isCombo", false);
     }
 
     void OnCollisionEnter2D(Collision2D collision)

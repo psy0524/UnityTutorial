@@ -12,7 +12,7 @@ public class JoystickController : MonoBehaviour, IPointerDownHandler,IDragHandle
     
     void Start()
     {
-        backgroundUI.SetActive(false);
+        //backgroundUI.SetActive(false);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -29,16 +29,16 @@ public class JoystickController : MonoBehaviour, IPointerDownHandler,IDragHandle
     public void OnPointerDown(PointerEventData eventData)
     {
         backgroundUI.SetActive(true);
-        backgroundUI.transform.position = eventData.position;
+        //backgroundUI.transform.position = eventData.position;
         
-        startPos = eventData.position;
+        startPos = backgroundUI.transform.position;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         
         handlerUI.transform.localPosition = Vector2.zero;
-        backgroundUI.SetActive(false);
+        //backgroundUI.SetActive(false);
         knightController_Joystick.InputJoystick(0, 0);
     }
 }
