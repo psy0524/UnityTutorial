@@ -49,6 +49,7 @@ public class KnightController_Joystick : MonoBehaviour
 
     private void Move()
     {
+        if(!isAttack) { return; }
         if (inputDir.x != 0)
         {
             knightRb.linearVelocityX = inputDir.x * moveSpeed;
@@ -60,7 +61,7 @@ public class KnightController_Joystick : MonoBehaviour
         inputDir = new Vector3(x, y, 0).normalized;
         animator.SetFloat("JoystickX", inputDir.x);
         animator.SetFloat("JoystickY", inputDir.y);
-
+        if(isAttack) {return;}
         if (inputDir.x != 0)
         {
             var scaleX = inputDir.x > 0 ? 1 : -1;
