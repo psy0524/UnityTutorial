@@ -2,21 +2,28 @@ using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KnightController_Joystick : MonoBehaviour
 {
     private Animator animator;
     private Rigidbody2D knightRb;
     private Vector3 inputDir;
+    [SerializeField] private Button jumpButton;
+    [SerializeField] private Button attackButton;
 
-    [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpPower = 13f;
     private bool isGround;
+    private bool isAttack;
+    private bool isCombo;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         knightRb = GetComponent<Rigidbody2D>();
+        jumpButton.onClick.AddListener(Jump);
+        attackButton.onClick.AddListener(SwordAttack);
     }
 
     void Update() // 일반적인 작업
@@ -48,29 +55,69 @@ public class KnightController_Joystick : MonoBehaviour
         }
     }
 
+    public void InputJoystick(float x, float y)
+    {
+        inputDir = new Vector3(x, y, 0).normalized;
+        animator.SetFloat("JoystickX", inputDir.x);
+        animator.SetFloat("JoystickY", inputDir.y);
+
+        if (inputDir.x != 0)
+        {
+            var scaleX = inputDir.x > 0 ? 1 : -1;
+            transform.localScale = new Vector3(scaleX, 1, 1);
+        }
+    }
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGround)
+        if (isGround)
         {
             animator.SetTrigger("Jump");
             knightRb.AddForceY(jumpPower, ForceMode2D.Impulse);
         }
     }
 
-    void SetAnimation()
+    void SwordAttack()
     {
-        if (inputDir.x != 0)
+        if (!isAttack)
         {
-            animator.SetBool("isRun", true);
-            var scaleX = inputDir.x > 0 ? 1 : -1;
-            transform.localScale = new Vector3(scaleX, 1, 1);
+            isAttack = true;
+            animator.SetTrigger("Attack");
         }
-        else if (inputDir.x == 0)
+        else
         {
-            animator.SetBool("isRun", false);
-
+            isCombo = true;
+            Debug.Log("콤보 확인");
         }
     }
+
+    public void CheckCombo()
+    {
+        Debug.Log("콤보");
+        if (isCombo)
+        {
+            animator.SetBool("isCombo", true);
+        }
+        else
+        {
+            animator.SetBool("isCombo", false);
+            isAttack = false;
+        }
+    }
+
+    //void SetAnimation()
+    //{
+    //    if (inputDir.x != 0)
+    //    {
+    //        animator.SetBool("isRun", true);
+    //        var scaleX = inputDir.x > 0 ? 1 : -1;
+    //        transform.localScale = new Vector3(scaleX, 1, 1);
+    //    }
+    //    else if (inputDir.x == 0)
+    //    {
+    //        animator.SetBool("isRun", false);
+
+    //    }
+    //}
 
     void OnCollisionEnter2D(Collision2D collision)
     {
