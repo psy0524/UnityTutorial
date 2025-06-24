@@ -66,6 +66,7 @@ public class KnightController_Keyboard : MonoBehaviour
 
     void SetAnimation()
     {
+        if (isAttack) { return;}
         if (inputDir.x != 0)
         {
             animator.SetBool("isRun", true);
