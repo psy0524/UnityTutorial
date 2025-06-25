@@ -11,6 +11,8 @@ public class KnightController_Keyboard : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float jumpPower = 13f;
+    [SerializeField] private float attackDamage = 3f;
+
     private bool isGround;
     private bool isAttack;
     private bool isCombo;
@@ -24,6 +26,8 @@ public class KnightController_Keyboard : MonoBehaviour
     void Update() // 일반적인 작업
     {
         InputKeyboard();
+        SwordAttack();
+        Jump();
     }
 
     private void FixedUpdate() // 물리적인 작업
@@ -37,10 +41,11 @@ public class KnightController_Keyboard : MonoBehaviour
         float v = Input.GetAxisRaw("Vertical");
 
         inputDir = new Vector3(h, v, 0).normalized;
-
-        Jump();
-        SetAnimation();
-        SwordAttack();
+        animator.SetFloat("JoystickX", inputDir.x);
+        animator.SetFloat("JoystickY", inputDir.y);
+        //Jump();
+        //SetAnimation();
+        //SwordAttack();
     }
 
     private void Move()
@@ -49,6 +54,8 @@ public class KnightController_Keyboard : MonoBehaviour
         {
             if (!isAttack)
             {
+                var scaleX = inputDir.x > 0 ? 1 : -1;
+                transform.localScale = new Vector3(scaleX, 1, 1);
                 knightRb.linearVelocityX = inputDir.x * moveSpeed;
             }
             else { return; }
@@ -64,21 +71,21 @@ public class KnightController_Keyboard : MonoBehaviour
         }
     }
 
-    void SetAnimation()
-    {
-        if (isAttack) { return;}
-        if (inputDir.x != 0)
-        {
-            animator.SetBool("isRun", true);
-            var scaleX = inputDir.x > 0 ? 1 : -1;
-            transform.localScale = new Vector3(scaleX, 1, 1);
-        }
-        else if (inputDir.x == 0)
-        {
-            animator.SetBool("isRun", false);
+    //void SetAnimation()
+    //{
+    //    if (isAttack) { return;}
+    //    if (inputDir.x != 0)
+    //    {
+    //        animator.SetBool("isRun", true);
+    //        var scaleX = inputDir.x > 0 ? 1 : -1;
+    //        transform.localScale = new Vector3(scaleX, 1, 1);
+    //    }
+    //    else if (inputDir.x == 0)
+    //    {
+    //        animator.SetBool("isRun", false);
 
-        }
-    }
+    //    }
+    //}
 
     void SwordAttack()
     {
@@ -88,11 +95,12 @@ public class KnightController_Keyboard : MonoBehaviour
             {
                 isAttack = true;
                 animator.SetTrigger("Attack");
+                Debug.Log("3데미지");
             }
             else
             {
                 isCombo = true;
-                Debug.Log("콤보 확인");
+                Debug.Log("콤보 시작");
             }
         }
         
@@ -100,10 +108,12 @@ public class KnightController_Keyboard : MonoBehaviour
 
     public void CheckCombo()
     {
-        Debug.Log("콤보");
+        
         if (isCombo)
         {
+            Debug.Log("콤보 동작중");
             animator.SetBool("isCombo", true);
+            Debug.Log("5데미지"); 
         }
         else
         {
@@ -115,9 +125,11 @@ public class KnightController_Keyboard : MonoBehaviour
 
     public void EndCombo()
     {
+        Debug.Log("EngCombo 시작");
         isAttack = false;
         isCombo = false;
         animator.SetBool("isCombo", false);
+        Debug.Log("EngCombo 종료");
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -135,6 +147,14 @@ public class KnightController_Keyboard : MonoBehaviour
         {
             animator.SetBool("isGround", false);
             isGround = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Monster"))
+        {
+            Debug.Log("공격");
         }
     }
 }

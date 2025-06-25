@@ -14,6 +14,7 @@ public class KnightController_Joystick : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpPower = 13f;
+    [SerializeField] private float attackDamage = 3f;
     private bool isGround;
     private bool isAttack;
     private bool isCombo;
@@ -49,7 +50,7 @@ public class KnightController_Joystick : MonoBehaviour
 
     private void Move()
     {
-        if(!isAttack) { return; }
+        if(isAttack) { return; }
         if (inputDir.x != 0)
         {
             knightRb.linearVelocityX = inputDir.x * moveSpeed;
@@ -82,6 +83,8 @@ public class KnightController_Joystick : MonoBehaviour
         if (!isAttack)
         {
             isAttack = true;
+            attackDamage = 3f;
+            Debug.Log("3데미지");
             animator.SetTrigger("Attack");
         }
         else
@@ -96,6 +99,8 @@ public class KnightController_Joystick : MonoBehaviour
         Debug.Log("콤보");
         if (isCombo)
         {
+            attackDamage = 5f;
+            Debug.Log("5데미지");
             animator.SetBool("isCombo", true);
         }
         else
@@ -142,6 +147,14 @@ public class KnightController_Joystick : MonoBehaviour
         {
             animator.SetBool("isGround", false);
             isGround = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Monster"))
+        {
+            Debug.Log("공격");
         }
     }
 }
