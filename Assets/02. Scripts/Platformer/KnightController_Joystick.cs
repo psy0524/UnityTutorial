@@ -53,7 +53,12 @@ public class KnightController_Joystick : MonoBehaviour
         if(isAttack) { return; }
         if (inputDir.x != 0)
         {
-            knightRb.linearVelocityX = inputDir.x * moveSpeed;
+            knightRb.linearVelocity = inputDir * moveSpeed;
+            
+        }
+        else
+        {
+            knightRb.linearVelocity = Vector2.zero;
         }
     }
 
