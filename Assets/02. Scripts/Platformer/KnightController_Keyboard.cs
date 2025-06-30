@@ -13,6 +13,7 @@ public class KnightController_Keyboard : MonoBehaviour
     private bool isGround;
     private bool isAttack;
     private bool isCombo;
+    private bool isLadder;
 
     private void Start()
     {
@@ -40,6 +41,15 @@ public class KnightController_Keyboard : MonoBehaviour
         inputDir = new Vector3(h, v, 0).normalized;
         animator.SetFloat("JoystickX", inputDir.x);
         animator.SetFloat("JoystickY", inputDir.y);
+
+        if (inputDir.y < 0)
+        {
+            GetComponent<CapsuleCollider2D>().size = new Vector2(1.05f, 0.525f);
+        }
+        else
+        {
+            GetComponent<CapsuleCollider2D>().size = new Vector2(1.05f, 1.05f);
+        }
         //Jump();
         //SetAnimation();
         //SwordAttack();
@@ -56,6 +66,10 @@ public class KnightController_Keyboard : MonoBehaviour
                 knightRb.linearVelocityX = inputDir.x * moveSpeed;
             }
             else { return; }
+        }
+        if (isLadder && inputDir.y != 0)
+        {
+            knightRb.linearVelocityY = inputDir.y * moveSpeed;
         }
     }
 
@@ -152,6 +166,23 @@ public class KnightController_Keyboard : MonoBehaviour
         if (collision.CompareTag("Monster"))
         {
             Debug.Log("АјАн");
+        }
+
+        if (collision.CompareTag("Ladder"))
+        {
+            isLadder = true;
+            knightRb.gravityScale = 0f;
+            knightRb.linearVelocity = Vector2.zero;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ladder"))
+        {
+            isLadder = false;
+            knightRb.gravityScale = 2f;
+            knightRb.linearVelocity = Vector2.zero;
         }
     }
 }

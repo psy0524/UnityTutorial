@@ -9,6 +9,7 @@ public class InteractionEvent : MonoBehaviour
     public GameObject popUp;
     public GameObject map;
     public GameObject house;
+    public SoundController soundController;
 
     public Vector3 inDoorPos;
     public Vector3 outDoorPos;
@@ -48,6 +49,7 @@ public class InteractionEvent : MonoBehaviour
 
     IEnumerator DoorRoutine(Transform player)
     {
+        soundController.EventSoundPlay("Door Open");
         yield return StartCoroutine(fade.Fade(2f, Color.black, true));
 
 
@@ -60,6 +62,7 @@ public class InteractionEvent : MonoBehaviour
         isHouse = !isHouse;
    
         yield return new WaitForSeconds(1f);
+        soundController.EventSoundPlay("Door Close");
         yield return StartCoroutine(fade.Fade(2f, Color.black, false));
     }
 }

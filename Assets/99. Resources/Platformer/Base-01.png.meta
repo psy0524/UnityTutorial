@@ -497,7 +497,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Base-01_17
+      name: Yellow Circle Mini
       rect:
         serializedVersion: 2
         x: 33
@@ -1443,7 +1443,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Base-01_60
+      name: Settings
       rect:
         serializedVersion: 2
         x: 50
@@ -1509,7 +1509,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Base-01_63
+      name: Brown Circle
       rect:
         serializedVersion: 2
         x: 189
@@ -1927,7 +1927,6 @@ TextureImporter:
       Base-01_14: 2111334005
       Base-01_15: 874542146
       Base-01_16: 2072105753
-      Base-01_17: 1348847513
       Base-01_18: -1131481348
       Base-01_19: 979831379
       Base-01_2: 90890548
@@ -1974,10 +1973,8 @@ TextureImporter:
       Base-01_58: 1624165893
       Base-01_59: -135961517
       Base-01_6: 108444017
-      Base-01_60: -535885104
       Base-01_61: 1153962035
       Base-01_62: -1014175972
-      Base-01_63: -1581494241
       Base-01_64: -17122116
       Base-01_65: 1542544084
       Base-01_66: 1597157644
@@ -1998,7 +1995,10 @@ TextureImporter:
       Base-01_8: 856533059
       Base-01_80: 1046320103
       Base-01_9: 1428142307
+      Brown Circle: -1581494241
+      Settings: -535885104
       Talk_0: -1800717085
+      Yellow Circle Mini: 1348847513
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
