@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3752296321517945694}
   - component: {fileID: 5476604449700842095}
   - component: {fileID: 3288357987273240883}
-  - component: {fileID: -2157460095748745744}
+  - component: {fileID: 4404258091853654154}
   m_Layer: 10
   m_Name: Green Heart
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 8443783847397792536}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.4378047, y: -0.6471061, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -163,7 +163,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.55, y: 0.45}
   m_EdgeRadius: 0
---- !u!114 &-2157460095748745744
+--- !u!114 &4404258091853654154
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,7 +172,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8443783847397792536}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 774726936fc5c4948b46af786416cc7d, type: 3}
+  m_Script: {fileID: 11500000, guid: 31112d47c10022d4d8ea7ab0ce9944d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  potionType: 2

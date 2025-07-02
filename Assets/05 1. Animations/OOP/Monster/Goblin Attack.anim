@@ -23,7 +23,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -40,7 +40,25 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
+        time: 0.6666667
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
         time: 0.75
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.8333333
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -52,29 +70,29 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: GameObject
+    path: '[Collider] Atk'
     classID: 1
     script: {fileID: 0}
     flags: 0
   m_PPtrCurves:
   - serializedVersion: 2
     curve:
-    - time: 0
-      value: {fileID: -7008412969330441016, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
     - time: 0.083333336
-      value: {fileID: -7763475090823894447, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
+      value: {fileID: -1139630300, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
     - time: 0.16666667
-      value: {fileID: 302641331129538988, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
+      value: {fileID: -1235888641, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
     - time: 0.25
-      value: {fileID: -6329420634031446844, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
+      value: {fileID: 1278665534, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
+    - time: 0.33333334
+      value: {fileID: -577676228, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
     - time: 0.41666666
-      value: {fileID: -910092549403018386, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
+      value: {fileID: 358633428, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
     - time: 0.5
-      value: {fileID: 221524225039350300, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
+      value: {fileID: -1672579530, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
     - time: 0.5833333
-      value: {fileID: 1290532464073988732, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
-    - time: 0.75
-      value: {fileID: 4780903288873104255, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
+      value: {fileID: -1282196967, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
+    - time: 0.8333333
+      value: {fileID: -980398395, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -88,7 +106,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 1482111001
+      path: 3385030157
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -106,20 +124,20 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -7008412969330441016, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
-    - {fileID: -7763475090823894447, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
-    - {fileID: 302641331129538988, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
-    - {fileID: -6329420634031446844, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
-    - {fileID: -910092549403018386, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
-    - {fileID: 221524225039350300, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
-    - {fileID: 1290532464073988732, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
-    - {fileID: 4780903288873104255, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
+    - {fileID: -1139630300, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
+    - {fileID: -1235888641, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
+    - {fileID: 1278665534, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
+    - {fileID: -577676228, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
+    - {fileID: 358633428, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
+    - {fileID: -1672579530, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
+    - {fileID: -1282196967, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
+    - {fileID: -980398395, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.8333333
+    m_StopTime: 0.9166666
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -141,7 +159,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -158,7 +176,25 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
+        time: 0.6666667
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
         time: 0.75
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.8333333
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -170,7 +206,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: GameObject
+    path: '[Collider] Atk'
     classID: 1
     script: {fileID: 0}
     flags: 0

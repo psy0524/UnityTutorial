@@ -1,14 +1,19 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class KnightController_Keyboard : MonoBehaviour
+public class KnightController_Keyboard : MonoBehaviour, IDamageable
 {
     private Animator animator;
     private Rigidbody2D knightRb;
     private Vector3 inputDir;
+    private Collider2D knightCol;
+    [SerializeField] private Image hpBar;
 
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float jumpPower = 13f;
-    [SerializeField] private float attackDamage = 3f;
+    [SerializeField] private float attackDamage = 10f;
+    [SerializeField] private float hp = 100f;
+    [SerializeField] private float currHp;
 
     private bool isGround;
     private bool isAttack;
@@ -19,6 +24,9 @@ public class KnightController_Keyboard : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         knightRb = GetComponent<Rigidbody2D>();
+        knightCol = GetComponent<Collider2D>();
+        currHp = hp;
+        hpBar.fillAmount = currHp / hp;
     }
 
     void Update() // 일반적인 작업
@@ -165,7 +173,11 @@ public class KnightController_Keyboard : MonoBehaviour
     {
         if (collision.CompareTag("Monster"))
         {
-            Debug.Log("공격");
+            if (collision.GetComponent<IDamageable>() != null)
+            {
+                collision.GetComponent<IDamageable>().TakeDamage(attackDamage);
+                collision.GetComponent<Animator>().SetTrigger("Hit");
+            }
         }
 
         if (collision.CompareTag("Ladder"))
@@ -184,5 +196,22 @@ public class KnightController_Keyboard : MonoBehaviour
             knightRb.gravityScale = 2f;
             knightRb.linearVelocity = Vector2.zero;
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        currHp -= damage;
+        hpBar.fillAmount = currHp / hp; // 현재 체력 / 최대체력 fillAmount 값은 0~1 사이 이므로 백분율을 통해서 계산
+        if (currHp <= 0f)
+        {
+            Death();
+        }
+    }
+
+    public void Death()
+    {
+        animator.SetTrigger("Death");
+        knightCol.enabled = false;
+        //knightRb.gravityScale = 0f;
     }
 }
