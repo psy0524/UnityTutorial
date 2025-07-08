@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4786594737979475971}
   - component: {fileID: 8220611279061505768}
   - component: {fileID: 8968790889473872150}
-  - component: {fileID: 7312363338266004425}
+  - component: {fileID: 2048206253495967783}
   m_Layer: 10
   m_Name: Blue Heart
   m_TagString: Untagged
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 150281c69eb43b94b9c15cae75464a57, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -163,7 +163,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7312363338266004425
+--- !u!114 &2048206253495967783
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,7 +172,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 4432772531229015310}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 774726936fc5c4948b46af786416cc7d, type: 3}
+  m_Script: {fileID: 11500000, guid: 31112d47c10022d4d8ea7ab0ce9944d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  potionType: 1

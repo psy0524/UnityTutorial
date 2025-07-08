@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PortalController : MonoBehaviour
 {
+    public enum SceneType { TOWN, ADVENTURE}
+    public SceneType sceneType;
     public GameObject portalEffect;
     public GameObject loadingImage;
 
@@ -34,6 +36,13 @@ public class PortalController : MonoBehaviour
             yield return null;
         }
 
-        SceneManager.LoadScene(1);
+        if (sceneType == SceneType.TOWN)
+        {
+            SceneManager.LoadScene(1);
+        }
+        else
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }

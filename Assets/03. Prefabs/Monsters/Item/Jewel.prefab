@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5758750437554278136}
   - component: {fileID: 316611070560303882}
   - component: {fileID: 5676429122115192472}
-  - component: {fileID: 4639798734400509046}
+  - component: {fileID: -2498225941651409328}
   m_Layer: 10
   m_Name: Jewel
   m_TagString: Untagged
@@ -163,7 +163,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &4639798734400509046
+--- !u!114 &-2498225941651409328
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,7 +172,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7346733105668864604}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 578c98716ce1ca74e84f26e3e92b3cfa, type: 3}
+  m_Script: {fileID: 11500000, guid: 31112d47c10022d4d8ea7ab0ce9944d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinType: 2

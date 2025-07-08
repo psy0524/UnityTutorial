@@ -110,6 +110,16 @@ public abstract class MonsterCore : MonoBehaviour, IDamageable
         monsterColl.enabled = false;
         goblinRb.gravityScale = 0f;
         goblinRb.linearVelocity = Vector2.zero;
-        itemManager.DropItem(transform.position); // transform.position 드롭위치(고블린이 죽은 위치)
+
+        int itemCount = Random.Range(1, 3);
+
+        if (itemCount > 0)
+        {
+            for (int i = 0; i < itemCount; i++)
+            {
+                itemManager.DropItem(transform.position); // transform.position 드롭위치(고블린이 죽은 위치)
+            }
+        }
+        
     }
 }

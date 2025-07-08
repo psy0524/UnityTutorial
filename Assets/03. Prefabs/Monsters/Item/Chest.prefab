@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4230186703114502330}
   - component: {fileID: 4991849051055597106}
   - component: {fileID: 793239655564172233}
-  - component: {fileID: -6975034277734761885}
+  - component: {fileID: -6205233970604415041}
   m_Layer: 10
   m_Name: Chest
   m_TagString: Untagged
@@ -163,7 +163,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-6975034277734761885
+--- !u!114 &-6205233970604415041
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,7 +172,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3926486316004725201}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 578c98716ce1ca74e84f26e3e92b3cfa, type: 3}
+  m_Script: {fileID: 11500000, guid: 31112d47c10022d4d8ea7ab0ce9944d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinType: 1
